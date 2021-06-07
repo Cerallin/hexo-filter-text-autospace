@@ -9,6 +9,23 @@
 $ npm install hexo-filter-text-autospace
 ```
 
+在项目根目录的 `_config.yml` 中添加
+```yaml
+text_autospace_filter:
+  enable: true
+  inject_css: true
+  tag_name: 'hanla'
+  entry:
+    type: 'tag'
+    name: 'body'
+  # entry:
+  #   name: '#post'
+  #   type: 'id'
+  # entry:
+  #   name: '.content'
+  #   type: 'class'
+```
+
 ## 示例
 我的 hexo 主题展示站：[https://cerallin.github.io](https://cerallin.github.io)
 

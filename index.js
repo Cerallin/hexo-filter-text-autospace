@@ -1,14 +1,43 @@
 'use strict';
 
-const filter = require('./lib/filter');
-const injector = require('./lib/injector');
+const Filter = require('./lib/filter');
+const Injector = require('./lib/injector');
 
-let conf = Object.assign({
+const conf = Object.assign({
   enable: false,
-  tag_name: 'hanla'
-}, hexo.config.text_space_filter);
+  inject_css: true,
+  tag_name: 'hanla',
+  entry: {
+    name: 'hanla',
+    type: 'class',
+  }
+}, hexo.config.text_autospace_filter);
+
+let entry = hexo.config.text_autospace_filter.entry || '.hanla';
+if (entry.search(/^\.\w+$/)) {
+  conf.entry = {
+    name: entry.substr(1),
+    type: 'class',
+  };
+} else if (entry.search(/^\#\w+$/)) {
+  conf.entry = {
+    name: entry.substr(1),
+    type: 'id',
+  };
+} else if (entry.search(/^[-\w]+$/)) {
+  conf.entry = {
+    name: entry,
+    type: 'tag',
+  };
+} else {
+  // TODO catch error
+}
+
+const filter = new Filter(conf);
+const injector = new Injector(conf);
 
 if (conf.enable) {
-  hexo.extend.injector.register('head_end', injector);
-  hexo.extend.filter.register('after_render:html', filter);
+  if (conf.inject_css)
+    hexo.extend.injector.register('head_end', injector.process);
+  hexo.extend.filter.register('after_render:html', filter.process);
 }
