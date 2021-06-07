@@ -1,5 +1,5 @@
 {
-  "name": "hexo-filter-text-space",
+  "name": "hexo-filter-text-autospace",
   "version": "1.0.0",
   "description": "A hexo plugin to insert spaces between CJK chars and latin chars.",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Cerallin/hexo-filter-text-space.git"
+    "url": "git+https://github.com/Cerallin/hexo-filter-text-autospace.git"
   },
   "keywords": [
     "hexo",
@@ -18,9 +18,9 @@
   "author": "Cerallin <cerallin@cerallin.top>",
   "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/Cerallin/hexo-filter-text-space/issues"
+    "url": "https://github.com/Cerallin/hexo-filter-text-autospace/issues"
   },
-  "homepage": "https://github.com/Cerallin/hexo-filter-text-space#readme",
+  "homepage": "https://github.com/Cerallin/hexo-filter-text-autospace#readme",
   "devDependencies": {
     "jest": "^27.0.4"
   },
