@@ -6,25 +6,21 @@ const Injector = require('./lib/injector');
 const conf = Object.assign({
   enable: false,
   inject_css: true,
-  tag_name: 'hanla',
-  entry: {
-    name: 'hanla',
-    type: 'class',
-  }
+  tag_name: 'hanla'
 }, hexo.config.text_autospace_filter);
 
-let entry = hexo.config.text_autospace_filter.entry || '.hanla';
-if (entry.search(/^\.\w+$/)) {
+let entry = conf.entry || '.hanla';
+if (entry.search(/^\.\w+$/) > -1) {
   conf.entry = {
     name: entry.substr(1),
     type: 'class',
   };
-} else if (entry.search(/^\#\w+$/)) {
+} else if (entry.search(/^\#\w+$/) > -1) {
   conf.entry = {
     name: entry.substr(1),
     type: 'id',
   };
-} else if (entry.search(/^[-\w]+$/)) {
+} else if (entry.search(/^[-\w]+$/) > -1) {
   conf.entry = {
     name: entry,
     type: 'tag',
