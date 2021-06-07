@@ -25,7 +25,6 @@
     "jest": "^27.0.4"
   },
   "dependencies": {
-    "findandreplacedomtext": "^0.4.6",
     "parse5": "^6.0.1"
   }
 }
