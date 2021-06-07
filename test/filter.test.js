@@ -1,5 +1,11 @@
 const filter = require("../lib/filter");
 
+test('test nothing', () => {
+    let str = `<!DOCTYPE html><html><head></head><body></body></html>`;
+    expect(filter(str))
+        .toBe(`<!DOCTYPE html><html><head></head><body></body></html>`)
+})
+
 test('test unchange', () => {
     let str = `<!DOCTYPE html><html><head></head><body>字</body></html>`;
     expect(filter(str))
