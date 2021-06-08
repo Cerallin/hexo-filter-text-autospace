@@ -25,9 +25,9 @@ test('test unchange', () => {
 })
 
 test('test inner text', () => {
-    let str = `<!DOCTYPE html><html><head></head><body class="hanla other-class">中文English</body></html>`;
+    let str = `<!DOCTYPE html><html><head></head><body class="hanla other-class">中文English中文</body></html>`;
     expect(filter.process(str))
-        .toBe(`<!DOCTYPE html><html><head></head><body class="hanla other-class">中文<hanla></hanla>English</body></html>`)
+        .toBe(`<!DOCTYPE html><html><head></head><body class="hanla other-class">中文<hanla></hanla>English<hanla></hanla>中文</body></html>`)
 })
 
 
