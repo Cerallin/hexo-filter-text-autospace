@@ -16,15 +16,9 @@ text_autospace_filter:
   enable: true
   inject_css: true
   tag_name: 'hanla'
-  entry:
-    type: 'tag'
-    name: 'body'
-  # entry:
-  #   name: '#post'
-  #   type: 'id'
-  # entry:
-  #   name: '.content'
-  #   type: 'class'
+  entry: 'body' # tag
+  # entry: '#post' # id
+  # entry: '.content' # class
 ```
 
 ## 示例
