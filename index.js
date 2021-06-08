@@ -11,17 +11,17 @@ const conf = Object.assign({
 }, hexo.config.text_autospace_filter);
 
 let entry = conf.entry;
-if (entry.search(/^\.\w+$/) > -1) {
+if (entry.search(/^\.[\w-]+$/) > -1) {
   conf.entry = {
     name: entry.substr(1),
     type: 'class',
   };
-} else if (entry.search(/^\#\w+$/) > -1) {
+} else if (entry.search(/^\#[\w-]+$/) > -1) {
   conf.entry = {
     name: entry.substr(1),
     type: 'id',
   };
-} else if (entry.search(/^[-\w]+$/) > -1) {
+} else if (entry.search(/^[\w-]+$/) > -1) {
   conf.entry = {
     name: entry,
     type: 'tag',
