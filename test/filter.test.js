@@ -30,6 +30,13 @@ test('test inner text', () => {
         .toBe(`<!DOCTYPE html><html><head></head><body class="hanla other-class">中文<hanla></hanla>English</body></html>`)
 })
 
+
+test('test already inserted', () => {
+    let str = `<!DOCTYPE html><html><head></head><body class="hanla other-class">中文<hanla></hanla>English</body></html>`;
+    expect(filter.process(str))
+        .toBe(`<!DOCTYPE html><html><head></head><body class="hanla other-class">中文<hanla></hanla>English</body></html>`)
+})
+
 test('test wrapping inner text', () => {
     let str = `<!DOCTYPE html><html><head></head><body class="hanla other-class">中文English中文</body></html>`;
     expect(filter.process(str))
@@ -81,6 +88,16 @@ test('test filter .hanla only', () => {
     expect((new Filter(conf)).process(str))
         .toBe(`<!DOCTYPE html><html><head></head><body><p>字note</p><div class="hanla other-class">中文<hanla></hanla>English</div></body></html>`)
 
+    conf.entry.type = "body";
+    conf.entry.name = "tag";
+})
+
+test('test match multi nodes', () => {
+    conf.entry.type = "class";
+    conf.entry.name = "hanla";
+    let str = `<!DOCTYPE html><html><head></head><body><div class="hanla">English中文</div><div class="hanla">中文English<div class="hanla">中文English</div></div></body></html>`;
+    expect(filter.process(str))
+        .toBe(`<!DOCTYPE html><html><head></head><body><div class="hanla">English<hanla></hanla>中文</div><div class="hanla">中文<hanla></hanla>English<div class="hanla"><hanla></hanla>中文<hanla></hanla>English</div></div></body></html>`)
     conf.entry.type = "body";
     conf.entry.name = "tag";
 })

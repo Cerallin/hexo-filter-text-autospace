@@ -6,10 +6,11 @@ const Injector = require('./lib/injector');
 const conf = Object.assign({
   enable: false,
   inject_css: true,
-  tag_name: 'hanla'
+  tag_name: 'hanla',
+  entry: '.hanla',
 }, hexo.config.text_autospace_filter);
 
-let entry = conf.entry || '.hanla';
+let entry = conf.entry;
 if (entry.search(/^\.\w+$/) > -1) {
   conf.entry = {
     name: entry.substr(1),

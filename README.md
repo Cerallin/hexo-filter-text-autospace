@@ -21,18 +21,18 @@ text_autospace_filter:
   # entry: '.content' # class
 ```
 
+**Notice** 当 `entry` 为 `class` 类型时，仅支持输入一个类，形如 `.class1.class2` 的规则是不被允许的。
+
 ## 示例
-我的 hexo 主题展示站：[https://cerallin.github.io](https://cerallin.github.io)
+我的 hexo 主题展示站：[https://cerallin.github.io](https://cerallin.github.io).
 
 ## 本项目的一个替代方案
 
 ~~那你为什么写这个插件呢~~
 
-1. 下载 [text-autospace.min.js](https://github.com/mastermay/text-autospace.js/raw/master/text-autospace.min.js)
-2. 放进 hexo 主题的 js 文件夹
-3. 大功告成
+使用 [text-autospace.js](https://github.com/mastermay/text-autospace.js).
 
-因此，如果你不介意向你的 hexo 网站 / 主题中添加 jQuery 依赖以及 js 文件，推荐使用 [text-autospace.js](https://github.com/mastermay/text-autospace.js).
+如果你不介意向你的 hexo 网站 / 主题中添加 jQuery 依赖以及 js 文件，推荐使用 [text-autospace.js](https://github.com/mastermay/text-autospace.js).
 
 ## LICENSE
 GPL3+
