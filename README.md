@@ -1,9 +1,8 @@
 # hexo-filter-text-autospace
 
-本项目是一个 hexo 插件，用于在 CJK 字符与拉丁字符中间插入适当的间距。
-翻译：中英文中间插入空格，像 Word 一样。
+本项目是一个 hexo 插件，用于在 CJK 字符与拉丁字符中间插入适当的间距。值得注意的是，并不直接插入一个半角空格，而是精确控制插入间距的宽度，像 Word 一样。
 
-本项目从 [text-autospace.js](https://github.com/mastermay/text-autospace.js) 中汲取许多灵感，在此对 text-autospace.js 和 [findAndReplaceDomText](https://github.com/padolsey/findAndReplaceDOMText) 的作者以及维护者表示感谢。
+本项目独立完成，但从 [text-autospace.js](https://github.com/mastermay/text-autospace.js) 中汲取许多灵感，在此对 text-autospace.js 和 [findAndReplaceDomText](https://github.com/padolsey/findAndReplaceDOMText) 的作者以及维护者表示感谢。
 
 ## 用法
 ```shell
