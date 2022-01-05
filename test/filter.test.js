@@ -101,3 +101,14 @@ test('test match multi nodes', () => {
     conf.entry.type = "body";
     conf.entry.name = "tag";
 })
+
+
+test('test bug', () => {
+    conf.entry.type = "class";
+    conf.entry.name = "hanla";
+    let str = `<!DOCTYPE html><html><head></head><body><div class="hanla"><p>正如<a href="#系统要求">系统要求</a>中parallel的输出中所提到的，当论文数据处理用到了该工具的时候，应该按照parallel的作者给出的形式<span class="citation" data-cites="tange2011gnu">[<a href="#ref-tange2011gnu" role="doc-biblioref">1</a>]</span>进行引用。</p></div></body></html>`;
+    expect(filter.process(str))
+        .toBe(`<!DOCTYPE html><html><head></head><body><div class="hanla"><p>正如<a href="#系统要求">系统要求</a>中<hanla></hanla>parallel<hanla></hanla>的输出中所提到的，当论文数据处理用到了该工具的时候，应该按照<hanla></hanla>parallel<hanla></hanla>的作者给出的形式<hanla></hanla><span class="citation" data-cites="tange2011gnu">[<a href="#ref-tange2011gnu" role="doc-biblioref">1</a>]</span><hanla></hanla>进行引用。</p></div></body></html>`)
+    conf.entry.type = "body";
+    conf.entry.name = "tag";
+})
