@@ -1,4 +1,6 @@
-const Filter = require("../lib/filter");
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import Filter from '../lib/filter.js';
 
 const conf = {
   enable: false,
@@ -27,53 +29,53 @@ function fragment(...content) {
 
 test('test empty', () => {
   const str = fragment();
-  expect(filter.process(str)).toBe(str)
-})
+  assert.equal(filter.process(str), str);
+});
 
 test('test unchanged', () => {
   const str = fragment('字');
-  expect(filter.process(str)).toBe(str);
-})
+  assert.equal(filter.process(str), str);
+});
 
 test('test inner text', () => {
   const input = fragment('中文English中文');
   const output = fragment('中文', '<hanla></hanla>', 'English', '<hanla></hanla>', '中文');
-  expect(filter.process(input)).toBe(output);
-})
+  assert.equal(filter.process(input), output);
+});
 
 test('test already inserted', () => {
   const str = fragment('中文', '<hanla></hanla>', 'English');
-  expect(filter.process(str)).toBe(str);
-})
+  assert.equal(filter.process(str), str);
+});
 
 test('test wrapping inner text', () => {
   const input = fragment('中文English中文');
   const output = fragment('中文', '<hanla></hanla>', 'English', '<hanla></hanla>', '中文');
-  expect(filter.process(input)).toBe(output);
-})
+  assert.equal(filter.process(input), output);
+});
 
 test('test ignore space', () => {
   const str = fragment('中文 English');
-  expect(filter.process(str)).toBe(str);
-})
+  assert.equal(filter.process(str), str);
+});
 
 test('test cross match 1', () => {
   const input = fragment('中文<em>English</em>');
   const output = fragment('中文', '<hanla></hanla>', '<em>English</em>');
-  expect(filter.process(input)).toBe(output);
-})
+  assert.equal(filter.process(input), output);
+});
 
 test('test cross match 2', () => {
   const input = fragment('<em>中文</em>English');
   const output = fragment('<em>中文<hanla></hanla></em>', 'English');
-  expect(filter.process(input)).toBe(output);
-})
+  assert.equal(filter.process(input), output);
+});
 
 test('test cross match 3', () => {
   const input = fragment('<a href="link">中文</a>', '<em>English</em>');
-  const output = fragment('<a href="link">中文<hanla></hanla>', '</a>', '<em>English</em>')
-  expect(filter.process(input)).toBe(output);
-})
+  const output = fragment('<a href="link">中文<hanla></hanla>', '</a>', '<em>English</em>');
+  assert.equal(filter.process(input), output);
+});
 
 test('test cross match complex', () => {
   const input = fragment(
@@ -103,8 +105,8 @@ test('test cross match complex', () => {
     '</div>',
     '<em>English</em>');
 
-  expect(filter.process(input)).toBe(output);
-})
+  assert.equal(filter.process(input), output);
+});
 
 test('test filter div only', () => {
   const input = fragment('<p>字note</p>', '<div>中文English</div>');
@@ -116,12 +118,11 @@ test('test filter div only', () => {
     'English',
     '</div>');
 
-  expect((new Filter({
-    ...conf,
-    entry: { name: 'div' }
-  })).process(input))
-    .toBe(output);
-})
+  assert.equal(
+    (new Filter({ ...conf, entry: { name: 'div' } })).process(input),
+    output
+  );
+});
 
 test('test filter .hanla only', () => {
   const input = fragment(
@@ -137,15 +138,11 @@ test('test filter .hanla only', () => {
     'English',
     '</div>');
 
-  expect((new Filter({
-    ...conf,
-    entry: {
-      type: 'class',
-      name: 'hanla'
-    }
-  })).process(input))
-    .toBe(output);
-})
+  assert.equal(
+    (new Filter({ ...conf, entry: { type: 'class', name: 'hanla' } })).process(input),
+    output
+  );
+});
 
 test('test match multi nodes', () => {
   const input = fragment(
@@ -174,9 +171,8 @@ test('test match multi nodes', () => {
     '</div>',
     '</div>');
 
-  expect(filter.process(input)).toBe(output);
-})
-
+  assert.equal(filter.process(input), output);
+});
 
 test('test bug', () => {
   const input = fragment(
@@ -212,7 +208,6 @@ test('test bug', () => {
     '<hanla></hanla>',
     '进行引用。',
     '</p>',
-    '</div>')
-  expect(filter.process(input))
-    .toBe(output);
-})
+    '</div>');
+  assert.equal(filter.process(input), output);
+});

@@ -1,7 +1,5 @@
-'use strict';
-
-const Filter = require('./lib/filter');
-const Injector = require('./lib/injector');
+import Filter from './lib/filter.js';
+import Injector from './lib/injector.js';
 
 const conf = Object.assign({
   enable: false,
@@ -13,12 +11,12 @@ const conf = Object.assign({
 let entry = conf.entry;
 if (entry.search(/^\.[\w-]+$/) > -1) {
   conf.entry = {
-    name: entry.substr(1),
+    name: entry.slice(1),
     type: 'class',
   };
 } else if (entry.search(/^\#[\w-]+$/) > -1) {
   conf.entry = {
-    name: entry.substr(1),
+    name: entry.slice(1),
     type: 'id',
   };
 } else if (entry.search(/^[\w-]+$/) > -1) {
